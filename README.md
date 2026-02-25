@@ -1,14 +1,10 @@
-💜 Olá, meu nome é Luis (Otisxx)!
+💜 Olá, meu nome é Otisxx
 
-Sou desenvolvedor focado em Backend e Full Stack, apaixonado por tecnologia, APIs e desenvolvimento de sistemas web.
-Tenho experiência na criação de aplicações completas, desde a estrutura do banco de dados até a interface final do usuário.
+Desenvolvedor Backend & Full Stack, especializado em criação de sistemas web modernos, integrações com APIs e desenvolvimento de plataformas completas — do banco de dados à interface final.
 
-Minha stack principal envolve desenvolvimento web moderno, integrações com APIs, sistemas administrativos e plataformas online.
+🔭 Atualmente foco em sistemas com integração de APIs fiscais (NF-e) e na criação de sites profissionais para empresas que querem crescer no digital.
 
-🔭 Atualmente estou desenvolvendo sistemas web com integração de API para consulta e gerenciamento de dados fiscais (como NF-e), além de projetos voltados para criação de sites profissionais para empresas que desejam fortalecer sua presença digital.
-
-💬 Se você quiser trocar uma ideia sobre programação, APIs, desenvolvimento web ou até mesmo tirar alguma dúvida, fique à vontade para entrar em contato. Estou sempre aberto a networking e novos projetos.
-
+💬 Aberto a networking, parcerias e novos projetos. Vamos construir algo grande juntos.
 🚀 Minhas Skills
 
 <code><img height="32" src="https://cdn.iconscout.com/icon/free/png-512/c-programming-569564.png" alt="c"/></code>
