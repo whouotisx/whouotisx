@@ -1,11 +1,12 @@
-💜 Olá, meu nome é Otisxx
+ Olá, meu nome é Otisxx
 
-Desenvolvedor Backend & Full Stack, especializado em criação de sistemas web modernos, integrações com APIs e desenvolvimento de plataformas completas — do banco de dados à interface final.
+Desenvolvedor Backend & Full Stack, focado em sistemas web e integrações com APIs.
+Trabalho construindo aplicações completas, com atenção à estrutura, performance e organização.
 
-🔭 Atualmente foco em sistemas com integração de APIs fiscais (NF-e) e na criação de sites profissionais para empresas que querem crescer no digital.
+🔭 Atualmente desenvolvendo soluções com integração de APIse projetos web para empresas.
 
-💬 Aberto a networking, parcerias e novos projetos. Vamos construir algo grande juntos.
-🚀 Minhas Skills
+💬 Aberto a novas conexões e projetos
+ Minhas Skills 👁️
 
 <code><img height="32" src="https://cdn.iconscout.com/icon/free/png-512/c-programming-569564.png" alt="c"/></code>
 <code><img height="32" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png" alt="Javascript"/></code>
