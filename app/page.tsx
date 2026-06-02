@@ -11,8 +11,10 @@ export default async function Home() {
 
   const lotesCargill = lotes.filter((l) => l.empresa === 'CARGILL')
   const lotesAdm = lotes.filter((l) => l.empresa === 'ADM')
-  const pedidosCargill = pedidos.filter((p) => p.empresa === 'CARGILL')
-  const pedidosAdm = pedidos.filter((p) => p.empresa === 'ADM')
+
+  const empresasPedidos = ['COFCO', 'AGREX', 'CARGILL', 'ADM', 'CJ', 'CERES']
+  const pedidosPorEmpresa = (empresa: string) =>
+    pedidos.filter((p) => p.empresa === empresa)
 
   return (
     <div className="min-h-screen">
@@ -74,17 +76,16 @@ export default async function Home() {
 
           <TabsContent value="pedidos" className="space-y-6">
             <Tabs defaultValue="todos" className="space-y-6">
-              <div className="flex items-center justify-between">
-                <TabsList>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <TabsList className="flex-wrap h-auto">
                   <TabsTrigger value="todos">
                     Todos ({pedidos.length})
                   </TabsTrigger>
-                  <TabsTrigger value="cargill" className="text-primary">
-                    Cargill ({pedidosCargill.length})
-                  </TabsTrigger>
-                  <TabsTrigger value="adm">
-                    ADM ({pedidosAdm.length})
-                  </TabsTrigger>
+                  {empresasPedidos.map((empresa) => (
+                    <TabsTrigger key={empresa} value={empresa}>
+                      {empresa} ({pedidosPorEmpresa(empresa).length})
+                    </TabsTrigger>
+                  ))}
                 </TabsList>
                 <PedidoForm />
               </div>
@@ -92,12 +93,11 @@ export default async function Home() {
               <TabsContent value="todos">
                 <PedidosList pedidos={pedidos} />
               </TabsContent>
-              <TabsContent value="cargill">
-                <PedidosList pedidos={pedidosCargill} />
-              </TabsContent>
-              <TabsContent value="adm">
-                <PedidosList pedidos={pedidosAdm} />
-              </TabsContent>
+              {empresasPedidos.map((empresa) => (
+                <TabsContent key={empresa} value={empresa}>
+                  <PedidosList pedidos={pedidosPorEmpresa(empresa)} />
+                </TabsContent>
+              ))}
             </Tabs>
           </TabsContent>
         </Tabs>
@@ -131,8 +131,8 @@ export default async function Home() {
                 <Building2 className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{lotesCargill.length + pedidosCargill.length}</p>
-                <p className="text-sm text-muted-foreground">Cargill</p>
+                <p className="text-2xl font-bold">{lotesCargill.length}</p>
+                <p className="text-sm text-muted-foreground">Lotes Cargill</p>
               </div>
             </div>
           </div>
@@ -142,8 +142,8 @@ export default async function Home() {
                 <Building2 className="h-6 w-6 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{lotesAdm.length + pedidosAdm.length}</p>
-                <p className="text-sm text-muted-foreground">ADM</p>
+                <p className="text-2xl font-bold">{lotesAdm.length}</p>
+                <p className="text-sm text-muted-foreground">Lotes ADM</p>
               </div>
             </div>
           </div>

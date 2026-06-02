@@ -196,8 +196,12 @@ export function PedidosList({ pedidos }: PedidosListProps) {
                       <SelectValue placeholder="Selecione" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="COFCO">COFCO</SelectItem>
+                      <SelectItem value="AGREX">AGREX</SelectItem>
                       <SelectItem value="CARGILL">Cargill</SelectItem>
                       <SelectItem value="ADM">ADM</SelectItem>
+                      <SelectItem value="CJ">CJ</SelectItem>
+                      <SelectItem value="CERES">CERES</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -219,44 +223,6 @@ export function PedidosList({ pedidos }: PedidosListProps) {
                     defaultValue={editingPedido.produto || ''}
                   />
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="edit-quantidade">Quantidade</Label>
-                  <Input
-                    id="edit-quantidade"
-                    name="quantidade"
-                    type="number"
-                    defaultValue={editingPedido.quantidade || ''}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="edit-dataEntrega">Data de Entrega</Label>
-                  <Input
-                    id="edit-dataEntrega"
-                    name="dataEntrega"
-                    type="date"
-                    defaultValue={
-                      editingPedido.dataEntrega
-                        ? new Date(editingPedido.dataEntrega).toISOString().split('T')[0]
-                        : ''
-                    }
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="edit-status">Status</Label>
-                <Select name="status" defaultValue={editingPedido.status || 'PENDENTE'}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="PENDENTE">Pendente</SelectItem>
-                    <SelectItem value="EM_ANDAMENTO">Em Andamento</SelectItem>
-                    <SelectItem value="ENTREGUE">Entregue</SelectItem>
-                    <SelectItem value="CANCELADO">Cancelado</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="edit-observacoes">Observacoes</Label>
