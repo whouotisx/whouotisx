@@ -21,16 +21,12 @@ export async function createLoteTn(data: {
   numeroLote: string
   empresa: string
   produto?: string
-  quantidade?: string
-  status?: string
   observacoes?: string
 }) {
   await db.insert(lotesTn).values({
     numeroLote: data.numeroLote,
     empresa: data.empresa,
     produto: data.produto || null,
-    quantidade: data.quantidade || null,
-    status: data.status || 'PENDENTE',
     observacoes: data.observacoes || null,
   })
   revalidatePath('/')
@@ -42,8 +38,6 @@ export async function updateLoteTn(
     numeroLote?: string
     empresa?: string
     produto?: string
-    quantidade?: string
-    status?: string
     observacoes?: string
   }
 ) {
@@ -79,9 +73,6 @@ export async function createPedido(data: {
   empresa: string
   cliente?: string
   produto?: string
-  quantidade?: string
-  dataEntrega?: Date
-  status?: string
   observacoes?: string
 }) {
   await db.insert(pedidos).values({
@@ -89,9 +80,6 @@ export async function createPedido(data: {
     empresa: data.empresa,
     cliente: data.cliente || null,
     produto: data.produto || null,
-    quantidade: data.quantidade || null,
-    dataEntrega: data.dataEntrega || null,
-    status: data.status || 'PENDENTE',
     observacoes: data.observacoes || null,
   })
   revalidatePath('/')
@@ -104,9 +92,6 @@ export async function updatePedido(
     empresa?: string
     cliente?: string
     produto?: string
-    quantidade?: string
-    dataEntrega?: Date
-    status?: string
     observacoes?: string
   }
 ) {
