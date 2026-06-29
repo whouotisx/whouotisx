@@ -4,7 +4,8 @@ import { LoteForm } from '@/components/lote-form'
 import { PedidoForm } from '@/components/pedido-form'
 import { LotesList } from '@/components/lotes-list'
 import { PedidosList } from '@/components/pedidos-list'
-import { Package, ClipboardList, Building2 } from 'lucide-react'
+import { ConsultaView } from '@/components/consulta-view'
+import { Package, ClipboardList, Building2, Search } from 'lucide-react'
 
 export default async function Home() {
   const [lotes, pedidos] = await Promise.all([getLotesTn(), getPedidos()])
@@ -34,7 +35,7 @@ export default async function Home() {
 
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="lotes" className="space-y-6">
-          <TabsList className="grid w-full max-w-md grid-cols-2">
+          <TabsList className="grid w-full max-w-lg grid-cols-3">
             <TabsTrigger value="lotes" className="gap-2">
               <Package className="h-4 w-4" />
               Lotes TN
@@ -42,6 +43,10 @@ export default async function Home() {
             <TabsTrigger value="pedidos" className="gap-2">
               <ClipboardList className="h-4 w-4" />
               Pedidos
+            </TabsTrigger>
+            <TabsTrigger value="consulta" className="gap-2">
+              <Search className="h-4 w-4" />
+              Consulta
             </TabsTrigger>
           </TabsList>
 
@@ -99,6 +104,10 @@ export default async function Home() {
                 </TabsContent>
               ))}
             </Tabs>
+          </TabsContent>
+
+          <TabsContent value="consulta">
+            <ConsultaView lotes={lotes} pedidos={pedidos} />
           </TabsContent>
         </Tabs>
 
