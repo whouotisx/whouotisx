@@ -86,6 +86,10 @@ export function PedidoForm({ empresaFilter }: PedidoFormProps) {
                   <SelectItem value="ADM">ADM</SelectItem>
                   <SelectItem value="CJ">CJ</SelectItem>
                   <SelectItem value="CERES">CERES</SelectItem>
+                  <SelectItem value="INPASA">Inpasa</SelectItem>
+                  <SelectItem value="GALVANI">Galvani</SelectItem>
+                  <SelectItem value="ATIVAAGRO">AtivaAgro</SelectItem>
+                  <SelectItem value="NNC">NNC</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -93,7 +97,17 @@ export function PedidoForm({ empresaFilter }: PedidoFormProps) {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="cliente">Cliente</Label>
-              <Input id="cliente" name="cliente" placeholder="Nome do cliente" />
+              <Select name="cliente">
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="INPASA">Inpasa</SelectItem>
+                  <SelectItem value="GALVANI">Galvani</SelectItem>
+                  <SelectItem value="ATIVAAGRO">AtivaAgro</SelectItem>
+                  <SelectItem value="NNC">NNC</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="produto">Produto</Label>
