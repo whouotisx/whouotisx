@@ -34,7 +34,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { useState } from 'react'
+import { useState, useOptimistic, useTransition } from 'react'
 
 interface LotesListProps {
   lotes: LoteTn[]
@@ -42,37 +42,45 @@ interface LotesListProps {
 
 export function LotesList({ lotes }: LotesListProps) {
   const [editingLote, setEditingLote] = useState<LoteTn | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [, startTransition] = useTransition()
+  const [optimisticLotes, setOptimisticLotes] = useOptimistic(lotes)
 
-  async function handleDelete(id: number) {
-    try {
-      await deleteLoteTn(id)
-      toast.success('Lote TN excluido com sucesso!')
-    } catch {
-      toast.error('Erro ao excluir lote TN')
-    }
+  function handleDelete(id: number) {
+    startTransition(async () => {
+      setOptimisticLotes((prev) => prev.filter((l) => l.id !== id))
+      try {
+        await deleteLoteTn(id)
+        toast.success('Lote TN excluido com sucesso!')
+      } catch {
+        toast.error('Erro ao excluir lote TN')
+      }
+    })
   }
 
-  async function handleUpdate(formData: FormData) {
+  function handleUpdate(formData: FormData) {
     if (!editingLote) return
-    setLoading(true)
-    try {
-      await updateLoteTn(editingLote.id, {
-        numeroLote: formData.get('numeroLote') as string,
-        empresa: formData.get('empresa') as string,
-        produto: formData.get('produto') as string,
-        observacoes: formData.get('observacoes') as string,
-      })
-      toast.success('Lote TN atualizado com sucesso!')
-      setEditingLote(null)
-    } catch {
-      toast.error('Erro ao atualizar lote TN')
-    } finally {
-      setLoading(false)
+    const id = editingLote.id
+    const data = {
+      numeroLote: formData.get('numeroLote') as string,
+      empresa: formData.get('empresa') as string,
+      produto: formData.get('produto') as string,
+      observacoes: formData.get('observacoes') as string,
     }
+    setEditingLote(null)
+    startTransition(async () => {
+      setOptimisticLotes((prev) =>
+        prev.map((l) => (l.id === id ? { ...l, ...data } : l))
+      )
+      try {
+        await updateLoteTn(id, data)
+        toast.success('Lote TN atualizado com sucesso!')
+      } catch {
+        toast.error('Erro ao atualizar lote TN')
+      }
+    })
   }
 
-  if (lotes.length === 0) {
+  if (optimisticLotes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
         <Package className="h-12 w-12 mb-4 opacity-50" />
@@ -84,7 +92,7 @@ export function LotesList({ lotes }: LotesListProps) {
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {lotes.map((lote) => (
+        {optimisticLotes.map((lote) => (
           <Card key={lote.id} className="border-border/50">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-lg font-semibold text-primary">
@@ -213,9 +221,7 @@ export function LotesList({ lotes }: LotesListProps) {
                 >
                   Cancelar
                 </Button>
-                <Button type="submit" disabled={loading}>
-                  {loading ? 'Salvando...' : 'Salvar'}
-                </Button>
+                <Button type="submit">Salvar</Button>
               </div>
             </form>
           )}
