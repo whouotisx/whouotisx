@@ -86,6 +86,10 @@ export function PedidoForm({ empresaFilter }: PedidoFormProps) {
                   <SelectItem value="ADM">ADM</SelectItem>
                   <SelectItem value="CJ">CJ</SelectItem>
                   <SelectItem value="CERES">CERES</SelectItem>
+                  <SelectItem value="INPASA">Inpasa</SelectItem>
+                  <SelectItem value="GALVANI">Galvani</SelectItem>
+                  <SelectItem value="ATIVAAGRO">AtivaAgro</SelectItem>
+                  <SelectItem value="NNC">NNC</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -13,7 +13,7 @@ export default async function Home() {
   const lotesCargill = lotes.filter((l) => l.empresa === 'CARGILL')
   const lotesAdm = lotes.filter((l) => l.empresa === 'ADM')
 
-  const empresasPedidos = ['COFCO', 'AGREX', 'CARGILL', 'ADM', 'CJ', 'CERES']
+  const empresasPedidos = ['COFCO', 'AGREX', 'CARGILL', 'ADM', 'CJ', 'CERES', 'INPASA', 'GALVANI', 'ATIVAAGRO', 'NNC']
   const pedidosPorEmpresa = (empresa: string) =>
     pedidos.filter((p) => p.empresa === empresa)
 
