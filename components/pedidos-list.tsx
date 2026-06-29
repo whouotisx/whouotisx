@@ -40,7 +40,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useState } from 'react'
+import { useState, useOptimistic, useTransition } from 'react'
 
 interface PedidosListProps {
   pedidos: Pedido[]
@@ -48,38 +48,46 @@ interface PedidosListProps {
 
 export function PedidosList({ pedidos }: PedidosListProps) {
   const [editingPedido, setEditingPedido] = useState<Pedido | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [, startTransition] = useTransition()
+  const [optimisticPedidos, setOptimisticPedidos] = useOptimistic(pedidos)
 
-  async function handleDelete(id: number) {
-    try {
-      await deletePedido(id)
-      toast.success('Pedido excluido com sucesso!')
-    } catch {
-      toast.error('Erro ao excluir pedido')
-    }
+  function handleDelete(id: number) {
+    startTransition(async () => {
+      setOptimisticPedidos((prev) => prev.filter((p) => p.id !== id))
+      try {
+        await deletePedido(id)
+        toast.success('Pedido excluido com sucesso!')
+      } catch {
+        toast.error('Erro ao excluir pedido')
+      }
+    })
   }
 
-  async function handleUpdate(formData: FormData) {
+  function handleUpdate(formData: FormData) {
     if (!editingPedido) return
-    setLoading(true)
-    try {
-      await updatePedido(editingPedido.id, {
-        numeroPedido: formData.get('numeroPedido') as string,
-        empresa: formData.get('empresa') as string,
-        cliente: formData.get('cliente') as string,
-        produto: formData.get('produto') as string,
-        observacoes: formData.get('observacoes') as string,
-      })
-      toast.success('Pedido atualizado com sucesso!')
-      setEditingPedido(null)
-    } catch {
-      toast.error('Erro ao atualizar pedido')
-    } finally {
-      setLoading(false)
+    const id = editingPedido.id
+    const data = {
+      numeroPedido: formData.get('numeroPedido') as string,
+      empresa: formData.get('empresa') as string,
+      cliente: formData.get('cliente') as string,
+      produto: formData.get('produto') as string,
+      observacoes: formData.get('observacoes') as string,
     }
+    setEditingPedido(null)
+    startTransition(async () => {
+      setOptimisticPedidos((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, ...data } : p))
+      )
+      try {
+        await updatePedido(id, data)
+        toast.success('Pedido atualizado com sucesso!')
+      } catch {
+        toast.error('Erro ao atualizar pedido')
+      }
+    })
   }
 
-  if (pedidos.length === 0) {
+  if (optimisticPedidos.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
         <ClipboardList className="h-12 w-12 mb-4 opacity-50" />
@@ -91,7 +99,7 @@ export function PedidosList({ pedidos }: PedidosListProps) {
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {pedidos.map((pedido) => (
+        {optimisticPedidos.map((pedido) => (
           <Card key={pedido.id} className="border-border/50">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-lg font-semibold text-primary">
@@ -244,9 +252,7 @@ export function PedidosList({ pedidos }: PedidosListProps) {
                 >
                   Cancelar
                 </Button>
-                <Button type="submit" disabled={loading}>
-                  {loading ? 'Salvando...' : 'Salvar'}
-                </Button>
+                <Button type="submit">Salvar</Button>
               </div>
             </form>
           )}
