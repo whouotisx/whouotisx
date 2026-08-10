@@ -12,8 +12,9 @@ export default async function Home() {
 
   const lotesCargill = lotes.filter((l) => l.empresa === 'CARGILL')
   const lotesAdm = lotes.filter((l) => l.empresa === 'ADM')
+  const lotesAmaggi = lotes.filter((l) => l.empresa === 'AMAGGI')
 
-  const empresasPedidos = ['COFCO', 'AGREX', 'CARGILL', 'ADM', 'CJ', 'CERES', 'INPASA', 'GALVANI', 'ATIVAAGRO', 'NNC']
+  const empresasPedidos = ['COFCO', 'AGREX', 'CARGILL', 'ADM', 'AMAGGI', 'CJ', 'CERES', 'INPASA', 'GALVANI', 'ATIVAAGRO', 'NNC']
   const pedidosPorEmpresa = (empresa: string) =>
     pedidos.filter((p) => p.empresa === empresa)
 
@@ -27,7 +28,7 @@ export default async function Home() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-foreground">Sistema de Pedido e Lotes Carvalho Cargo</h1>
-              <p className="text-sm text-muted-foreground">Gerenciamento Cargill e ADM</p>
+              <p className="text-sm text-muted-foreground">Gerenciamento Cargill, ADM e AMAGGI - ALZ</p>
             </div>
           </div>
         </div>
@@ -63,6 +64,9 @@ export default async function Home() {
                   <TabsTrigger value="adm">
                     ADM ({lotesAdm.length})
                   </TabsTrigger>
+                  <TabsTrigger value="amaggi" className="text-amber-400">
+                    AMAGGI - ALZ ({lotesAmaggi.length})
+                  </TabsTrigger>
                 </TabsList>
                 <LoteForm />
               </div>
@@ -75,6 +79,9 @@ export default async function Home() {
               </TabsContent>
               <TabsContent value="adm">
                 <LotesList lotes={lotesAdm} />
+              </TabsContent>
+              <TabsContent value="amaggi">
+                <LotesList lotes={lotesAmaggi} />
               </TabsContent>
             </Tabs>
           </TabsContent>

@@ -84,6 +84,7 @@ export function PedidoForm({ empresaFilter }: PedidoFormProps) {
                   <SelectItem value="AGREX">AGREX</SelectItem>
                   <SelectItem value="CARGILL">Cargill</SelectItem>
                   <SelectItem value="ADM">ADM</SelectItem>
+                  <SelectItem value="AMAGGI">AMAGGI - ALZ</SelectItem>
                   <SelectItem value="CJ">CJ</SelectItem>
                   <SelectItem value="CERES">CERES</SelectItem>
                   <SelectItem value="INPASA">Inpasa</SelectItem>

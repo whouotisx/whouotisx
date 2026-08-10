@@ -144,9 +144,15 @@ export function LotesList({ lotes }: LotesListProps) {
             <CardContent className="space-y-3">
               <Badge
                 variant="outline"
-                className={lote.empresa === 'CARGILL' ? 'bg-primary/20 text-primary border-primary/30' : 'bg-blue-500/20 text-blue-400 border-blue-500/30'}
+                className={
+                  lote.empresa === 'CARGILL'
+                    ? 'bg-primary/20 text-primary border-primary/30'
+                    : lote.empresa === 'ADM'
+                      ? 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+                      : 'bg-amber-500/20 text-amber-400 border-amber-500/30'
+                }
               >
-                {lote.empresa}
+                {lote.empresa === 'AMAGGI' ? 'AMAGGI - ALZ' : lote.empresa}
               </Badge>
               {lote.produto && (
                 <p className="text-sm">

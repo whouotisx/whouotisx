@@ -81,6 +81,7 @@ export function LoteForm({ empresaFilter }: LoteFormProps) {
                 <SelectContent>
                   <SelectItem value="CARGILL">Cargill</SelectItem>
                   <SelectItem value="ADM">ADM</SelectItem>
+                  <SelectItem value="AMAGGI">AMAGGI - ALZ</SelectItem>
                 </SelectContent>
               </Select>
             </div>
