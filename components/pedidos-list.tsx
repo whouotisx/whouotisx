@@ -172,7 +172,9 @@ export function PedidosList({ pedidos }: PedidosListProps) {
               )}
               <p className="text-xs text-muted-foreground">
                 {pedido.dataPedido
-                  ? new Date(pedido.dataPedido).toLocaleDateString('pt-BR')
+                  ? new Date(pedido.dataPedido).toLocaleDateString('pt-BR', {
+                      timeZone: 'UTC',
+                    })
                   : ''}
               </p>
             </CardContent>

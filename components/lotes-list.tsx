@@ -160,7 +160,9 @@ export function LotesList({ lotes }: LotesListProps) {
               )}
               <p className="text-xs text-muted-foreground">
                 {lote.dataEntrada
-                  ? new Date(lote.dataEntrada).toLocaleDateString('pt-BR')
+                  ? new Date(lote.dataEntrada).toLocaleDateString('pt-BR', {
+                      timeZone: 'UTC',
+                    })
                   : ''}
               </p>
             </CardContent>
