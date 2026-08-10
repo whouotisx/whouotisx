@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Sistema de Lotes TN e Pedidos',
-  description: 'Gerenciamento de Lotes TN e Pedidos - Cargill e ADM',
+  title: 'Sistema de Pedido e Lotes Carvalho Cargo',
+  description: 'Sistema de Pedido e Lotes Carvalho Cargo - Gerenciamento de Lotes TN e Pedidos',
   generator: 'v0.app',
   icons: {
     icon: [

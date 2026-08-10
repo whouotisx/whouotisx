@@ -26,7 +26,7 @@ export default async function Home() {
               <Building2 className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Sistema de Lotes TN e Pedidos</h1>
+              <h1 className="text-2xl font-bold text-foreground">Sistema de Pedido e Lotes Carvalho Cargo</h1>
               <p className="text-sm text-muted-foreground">Gerenciamento Cargill e ADM</p>
             </div>
           </div>
